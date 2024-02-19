@@ -3,6 +3,7 @@ package steps;
 import helpers.Assertions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -59,10 +60,27 @@ public class Steps {
     public static void checkPriceFilter(String minPrice, String maxPrice, String filterButtonXpath, WebDriver currentDriver) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(filterButtonXpath)));
         List<WebElement> filterButtons = currentDriver.findElements(By.xpath(filterButtonXpath));
-        Assertions.assertTrue(filterButtons.stream().anyMatch((w) -> w.getText().contains(minPrice + " — " + maxPrice)),
+        Assertions.assertTrue(filterButtons.stream().anyMatch(w -> w.getText().contains(minPrice + " — " + maxPrice)),
                 "Фильтры цены установлены неверно");
 
     }
 
+    @Step("Устанавливаем фильтр производителей")
+    public static void setVendor(List<String> vendors, String xpath, WebDriver currentDriver) {
+        vendors.forEach(v -> clickByXpath(xpath + v + "')]", currentDriver));
+    }
+
+    @Step("Подгружаем все результаты на странице")
+    public static void loadToEnd(String waitXpath, WebDriver currentDriver) {
+        ((JavascriptExecutor) currentDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(waitXpath)));
+    }
+
+    @Step("Проверяем минимальное количество элементов на первой странице - {quantity}")
+    public static void firstPageQuantityCheck(String quantity, String xpath, WebDriver currentDriver) {
+        Assertions.assertTrue(Integer.parseInt(quantity) <= currentDriver.findElements(By.xpath(xpath)).size(),
+                "Заданное количество результатов (" + quantity + ") не найдено");
+
+    }
 
 }

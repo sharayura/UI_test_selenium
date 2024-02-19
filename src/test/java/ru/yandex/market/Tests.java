@@ -24,6 +24,7 @@ public class Tests extends BaseTest {
         MarketCategory marketCategory = new MarketCategory(chromeDriver);
         marketCategory.setPrices();
         marketCategory.setVendors();
+        marketCategory.filterResults();
 
     }
 }
