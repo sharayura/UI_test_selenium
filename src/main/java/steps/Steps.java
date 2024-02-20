@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,13 +33,12 @@ public class Steps {
     public static WebElement findElementCustom(String xPath, WebDriver currentDriver) {
         long timeout = Long.parseLong(TIMEOUT) * 1000;
         long start = System.currentTimeMillis();
-        List<WebElement> elements = null;
+        List<WebElement> elements = new ArrayList<>();
         while (System.currentTimeMillis() - start < timeout) {
             elements = currentDriver.findElements(By.xpath(xPath));
             if (!elements.isEmpty()) {
                 break;
             }
-
         }
         Assertions.assertFalse(elements.isEmpty(), "Элемент не найден по xPath " + xPath);
         return elements.get(0);
@@ -72,18 +72,20 @@ public class Steps {
 
     @Step("Вводим значение {price} в форму фильтра")
     public static void setPrice(String price, String PriceXpath, String attributeXpath, WebDriver currentDriver) {
-        String oldAttribute = findElementCustom(attributeXpath, currentDriver).getAttribute("id");
+        String oldAttribute = beforeSearch(attributeXpath, currentDriver);
         findElementCustom(PriceXpath, currentDriver).sendKeys(price);
-        waitForNewAttribute(oldAttribute, attributeXpath, currentDriver);
+        afterSearch(oldAttribute, attributeXpath, currentDriver);
+    }
+
+    public static String beforeSearch(String attributeXpath, WebDriver currentDriver) {
+        return findElementCustom(attributeXpath, currentDriver).getAttribute("id");
     }
 
     @Step("Ждем обновления результатов")
-    public static void waitForNewAttribute(String oldAttribute, String attributeXpath, WebDriver currentDriver) {
-        String newAttribute;
+    public static void afterSearch(String oldAttribute, String attributeXpath, WebDriver currentDriver) {
         for (int i = 0; i < Integer.parseInt(TIMEOUT); i++) {
             waitOneSec();
-            newAttribute = findElementCustom(attributeXpath, currentDriver).getAttribute("id");
-            if (!oldAttribute.equals(newAttribute)) {
+            if (!oldAttribute.equals(beforeSearch(attributeXpath, currentDriver))) {
                 return;
             }
         }
@@ -107,9 +109,9 @@ public class Steps {
     @Step("Устанавливаем фильтр производителей")
     public static void setVendor(List<String> vendors, String xpath, String attributeXpath, WebDriver currentDriver) {
         vendors.forEach(v -> {
-            String oldAttribute = findElementCustom(attributeXpath, currentDriver).getAttribute("id");
+            String oldAttribute = beforeSearch(attributeXpath, currentDriver);
             clickByXpath(xpath + v + "')]", currentDriver);
-            waitForNewAttribute(oldAttribute, attributeXpath, currentDriver);
+            afterSearch(oldAttribute, attributeXpath, currentDriver);
         });
     }
 
@@ -160,5 +162,14 @@ public class Steps {
         return false;
     }
 
-
+    @Step("Ищем товар в результатах поиска")
+    public static void searchItem(String item, String elementXpath, String itemXpath, WebDriver currentDriver) {
+        List<WebElement> elementList = currentDriver.findElements(By.xpath(elementXpath));
+        for (WebElement e : elementList) {
+                if (e.findElement(By.xpath(itemXpath)).getText().equals(item)) {
+                    return;
+                }
+            }
+        Assertions.assertTrue(false, "В результатах поиска нет товара " + item);
+    }
 }

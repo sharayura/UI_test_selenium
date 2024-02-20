@@ -16,4 +16,10 @@ public interface TestProperties extends Config {
 
     @Config.Key("timeout.sec")
     String timeoutSec();
+
+    @Config.Key("market.url")
+    String marketUrl();
+
+    @Config.Key("market.title")
+    String marketTitle();
 }
