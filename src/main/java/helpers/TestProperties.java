@@ -13,4 +13,7 @@ public interface TestProperties extends Config {
 
     @Config.Key("user.data.dir")
     String userDataDir();
+
+    @Config.Key("timeout.sec")
+    String timeoutSec();
 }
