@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.XPaths;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
@@ -20,10 +21,10 @@ public class MarketStart {
     }
 
     private static final String MARKET_URL = testProperties.marketUrl();
-    private static final String CATALOG_XPATH = "//div[@data-zone-name='catalog']";
-    private static final String CATEGORY1_XPATH = "//span[text()='";
-    private static final String CATEGORY2_XPATH = "//div[@data-baobab-name='linkSnippet']/a[text()='";
-    private static final String CATEGORY2_CHECK_XPATH = "//span[@itemprop='name']";
+    private static final String CATALOG_XPATH = XPaths.CATALOG_XPATH.getXpath();
+    private static final String CATEGORY1_XPATH = XPaths.CATEGORY1_XPATH.getXpath();
+    private static final String CATEGORY2_XPATH = XPaths.CATEGORY2_XPATH.getXpath();
+    private static final String CATEGORY2_CHECK_XPATH = XPaths.CATEGORY2_CHECK_XPATH.getXpath();
 
 
     @Step("Открываем категорию {category1Text}")

@@ -1,6 +1,7 @@
 package pages;
 
 import helpers.Assertions;
+import helpers.XPaths;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,17 +28,17 @@ public class MarketCategory {
         this.minQuantity = minQuantity;
     }
 
-    private static final String PRICE_MIN_XPATH = "//input[contains(@id, 'range-filter-field-glprice') and contains(@id, '_min')]";
-    private static final String PRICE_MAX_XPATH = "//input[contains(@id, 'range-filter-field-glprice') and contains(@id, '_max')]";
-    private static final String NEW_ATTRIBUTE_XPATH = "//div[@data-auto='SerpPage']";
-    private static final String FILTER_BUTTON_XPATH = "//div[@data-zone-name='QuickFilterButton']";
-    private static final String SHOW_VENDORS_BUTTON_XPATH = "//div[contains(@data-zone-data, 'Производитель')]//div[@data-baobab-name='showMoreFilters']";
-    private static final String VENDORS_BOX_XPATH = "//div[contains(@data-zone-data, 'Производитель')]//span[contains(text(), '";
-    private static final String WAIT_FOOTER_XPATH = "//div[@data-zone-name='footer']";
-    private static final String PAGINATION_XPATH = "//div[@data-auto='pagination-page']";
-    private static final String ARTICLE_XPATH = "//article[@data-autotest-id='product-snippet']";
-    private static final String ITEM_XPATH = ".//h3[@data-auto='snippet-title-header']//span";
-    private static final String PRICE_XPATH = ".//*[@data-auto='price-value' or @data-auto='snippet-price-current']";
+    private static final String PRICE_MIN_XPATH = XPaths.PRICE_MIN_XPATH.getXpath();
+    private static final String PRICE_MAX_XPATH = XPaths.PRICE_MAX_XPATH.getXpath();
+    private static final String NEW_ATTRIBUTE_XPATH = XPaths.NEW_ATTRIBUTE_XPATH.getXpath();
+    private static final String FILTER_BUTTON_XPATH = XPaths.FILTER_BUTTON_XPATH.getXpath();
+    private static final String SHOW_VENDORS_BUTTON_XPATH = XPaths.SHOW_VENDORS_BUTTON_XPATH.getXpath();
+    private static final String VENDORS_BOX_XPATH = XPaths.VENDORS_BOX_XPATH.getXpath();
+    private static final String WAIT_FOOTER_XPATH = XPaths.WAIT_FOOTER_XPATH.getXpath();
+    private static final String PAGINATION_XPATH = XPaths.PAGINATION_XPATH.getXpath();
+    private static final String ARTICLE_XPATH = XPaths.ARTICLE_XPATH.getXpath();
+    private static final String ITEM_XPATH = XPaths.ITEM_XPATH.getXpath();
+    private static final String PRICE_XPATH = XPaths.PRICE_XPATH.getXpath();
 
 
     @Step("Устанавливаем цену от {priceMin} до {priceMax}")

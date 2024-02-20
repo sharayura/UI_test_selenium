@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 public class DataProvider {
     public static Stream<Arguments> provideTest(){
         List<String> vendors = new ArrayList<>();
-        vendors.add("ASUS");
+        vendors.add("HP");
         vendors.add("Lenovo");
         return Stream.of(
                 Arguments.of("Яндекс Маркет", "Ноутбуки и компьютеры", "Ноутбуки",
-                        "10000", "70000", vendors, "12")
+                        "10000", "30000", vendors, "12")
         );
     }
 }

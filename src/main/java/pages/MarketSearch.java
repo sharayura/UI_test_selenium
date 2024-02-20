@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.XPaths;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import static steps.Steps.*;
@@ -7,11 +8,11 @@ import static steps.Steps.*;
 public class MarketSearch {
     private final WebDriver driver;
 
-    private static final String SEARCH_INPUT_XPATH = "//input[@id='header-search']";
-    private static final String SEARCH_BUTTON_XPATH = "//button[@data-auto='search-button']";
-    private static final String ARTICLE_XPATH = "//article[@data-autotest-id='product-snippet']";
-    private static final String ITEM_XPATH = ".//h3[@data-auto='snippet-title-header']//span";
-    private static final String NEW_ATTRIBUTE_XPATH = "//div[@data-auto='SerpPage']";
+    private static final String SEARCH_INPUT_XPATH = XPaths.SEARCH_INPUT_XPATH.getXpath();
+    private static final String SEARCH_BUTTON_XPATH = XPaths.SEARCH_BUTTON_XPATH.getXpath();
+    private static final String ARTICLE_XPATH = XPaths.ARTICLE_XPATH.getXpath();
+    private static final String ITEM_XPATH = XPaths.ITEM_XPATH.getXpath();
+    private static final String NEW_ATTRIBUTE_XPATH = XPaths.NEW_ATTRIBUTE_XPATH.getXpath();
 
     public MarketSearch(WebDriver driver) {
         this.driver = driver;
