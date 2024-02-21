@@ -22,4 +22,8 @@ public interface TestProperties extends Config {
 
     @Config.Key("market.title")
     String marketTitle();
+
+    @Config.Key("user.data.enabled")
+    String userDataEnabled();
+
 }

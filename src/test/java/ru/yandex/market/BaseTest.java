@@ -17,7 +17,9 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", System.getenv(testProperties.chromeDriver()));
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("user-data-dir=" + testProperties.userDataDir());
+        if (testProperties.userDataEnabled().equals("true")) {
+            chromeOptions.addArguments("user-data-dir=" + testProperties.userDataDir());
+        }
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.addArguments("start-maximized");
 
