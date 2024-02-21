@@ -1,3 +1,8 @@
+/**
+ * Класс PO начальной страницы
+ *
+ * @author Sharapov Yuri
+ */
 package pages;
 
 import helpers.XPaths;

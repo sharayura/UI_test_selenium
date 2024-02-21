@@ -1,3 +1,8 @@
+/**
+ * Класс PO для поиска с установкой фильтров
+ *
+ * @author Sharapov Yuri
+ */
 package pages;
 
 import helpers.Assertions;

@@ -1,3 +1,8 @@
+/**
+ * Базовый класс для создания тестов
+ *
+ * @author Sharapov Yuri
+ */
 package ru.yandex.market;
 
 import org.junit.jupiter.api.AfterEach;

@@ -1,3 +1,9 @@
+/**
+ * Основной класс тестов
+ *
+ * @author Sharapov Yuri
+ */
+
 package ru.yandex.market;
 
 import io.qameta.allure.Feature;

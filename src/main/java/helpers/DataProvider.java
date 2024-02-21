@@ -1,3 +1,8 @@
+/**
+ * Класс для установки параметров теста
+ *
+ * @author Sharapov Yuri
+ */
 package helpers;
 
 import org.junit.jupiter.params.provider.Arguments;
@@ -7,7 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class DataProvider {
-    public static Stream<Arguments> provideTest(){
+    public static Stream<Arguments> provideTest() {
         List<String> vendors = new ArrayList<>();
         vendors.add("HP");
         vendors.add("Lenovo");

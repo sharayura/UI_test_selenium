@@ -1,8 +1,15 @@
+/**
+ * Класс PO для поиска по названию товара
+ *
+ * @author Sharapov Yuri
+ */
+
 package pages;
 
 import helpers.XPaths;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+
 import static steps.Steps.*;
 
 public class MarketSearch {

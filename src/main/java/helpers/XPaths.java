@@ -1,3 +1,8 @@
+/**
+ * Класс для хранения xpath локаторов
+ *
+ * @author Sharapov Yuri
+ */
 package helpers;
 
 public enum XPaths {
